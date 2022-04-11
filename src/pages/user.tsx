@@ -1,13 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
 import styles from "../styles/Home.module.css";
-import { activateLasers } from "./api/hello";
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
-
+  const router = useRouter()
     return (
       <div className={styles.container}>
         <div className="bg-gray-100">
@@ -18,35 +16,48 @@ const Home: NextPage = () => {
         </Head>
         
         <header className="text-right border-2 border-black">
-          UserNmame
+        <>
+        <div>{ 'こんちわ' + router.query.input}</div>
+        </>
           </header>
-
-          
            <main className={styles.table}>
            <div className="grid grid-cols-5 gap-2">
-
-           <div className="col-span-1">
-              <aside className="border-2 border-black">
+           <div className="col-span-1 border-2 border-black">              
                <Link href="/record">
                <a>Home</a>
                </Link>
-               <Link href="/record">
+               <Link href="/user">
                 <a>ユーザー管理</a>
                </Link>
-              </aside>
              </div>
-
-            <div className="col-span-4">
-                <h3>権限</h3>
-                <form className="px-6 mt-4 mb-4 w-full,text-align">
-          <div>メールアドレス/id</div>
-         <input className = "border-2 border-black"></input>
+            <div className="flex col-span-4">
+                <h3>検索</h3>
+                <form className=" px-6 mt-4 mb-4 w-full,text-align">
+          <div>id</div>
+         <input className = "flex-1 border-2 border-black"></input>
         </form>
-        
-
+        <form className="px-6 mt-4 mb-4 w-full,text-align">
+          <div>名前</div>
+         <input className = "flex-1 border-2 border-black"></input>
+        </form>
+        <form className="px-6 mt-4 mb-4 w-full,text-align">
+          <div>メールアドレス</div>
+         <input className = "flex-1 border-2 border-black"></input>
+        </form>
+        <form className="px-6 mt-4 mb-4 w-full,text-align">
+          <div>権限</div>
+         <input className = "flex-1 border-2 border-black"></input>
+        </form>
+        </div>
+        <ul>
+         <li>
+          <div className={"w-24 text-white border-2 border-black rounded-full py-2 px-3 text-2xl bg-red-400"}>
+          <button>検索</button></div>
+        </li>
+       </ul>
              <h3>ユーザー一覧</h3>
               <div className="pl-20 bg-gray-100">
-               <table>
+               <table width="500 height=100">
                 <div className="py-4">
                  <tbody className="border-2 border-black">
                   <tr className="border-2 border-black">
@@ -90,8 +101,8 @@ const Home: NextPage = () => {
                 </div>
                </table>
               </div>
+
              </div>
-            </div>
             </main>
            </div>
           </div>

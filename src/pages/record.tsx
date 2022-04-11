@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
 import styles from "../styles/Home.module.css";
-import { activateLasers } from "./api/hello";
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
+  const router = useRouter()
+  console.log(router.query.name)
 
     return (
       <div className={styles.container}>
@@ -18,29 +18,29 @@ const Home: NextPage = () => {
         </Head>
         
         <header className="text-right border-2 border-black">
-          UserNmame
+        <>
+        <div>{ 'こんちわ' + router.query.input}</div>
+        </>
           </header>
         
            <main className={styles.table}>
            <div className="grid grid-cols-5 gap-2">
 
-           <div className="col-span-1">
-              <aside className="border-2 border-black">
+           <div className="col-span-1 border-2 border-black">              
                <Link href="/record">
                <a>Home</a>
                </Link>
                <Link href="/user">
                 <a>ユーザー管理</a>
                </Link>
-              </aside>
              </div>
 
             <div className="col-span-4">
              <h3>履歴</h3>
               <div className="pl-20 bg-gray-100">
                <table>
-                <div className="py-4">
-                 <tbody className="border-2 border-black">
+                
+                 <tbody className="border-2 border-black py-4">
                   <tr className="border-2 border-black">
                    <th>日付</th>
                    <th>ユーザー</th>
@@ -62,7 +62,7 @@ const Home: NextPage = () => {
                    <td>ユーザーを作成しました</td>
                   </tr>
                  </tbody>
-                </div>
+                
                </table>
               </div>
              </div>

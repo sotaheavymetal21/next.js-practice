@@ -1,13 +1,22 @@
-import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
 import styles from "../styles/Home.module.css";
-import { activateLasers } from "./api/hello";
-import Link from 'next/link';
+import { useRouter } from 'next/router';
+import {useState} from 'react';
 
-const Home: NextPage = () => {
+export default function Index(){
+  const router = useRouter();    
+  const [input, setInput] = useState<string>();
 
+  const clickButton = () => {
+    //未入力の時
+    if (!input) {
+      return;
+    }
+    router.push({
+        pathname:"/record",   //URL
+        query: {input :input} //検索クエリ
+      });
+  }
 
   return (
     <div className={styles.container}>
@@ -18,34 +27,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      
       <main className={styles.main}>
         <div className="bg-white">
       <div className="border-2 border-black text-center">
         <h1 className={"text-3xl"}>
           ログイン
         </h1>
-
         <form className="px-6 mt-4 mb-4 w-full,text-align">
-          <div>メールアドレス/id</div>
-         <input className = "border-2 border-black"></input>
+         <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder="メールアドレス/id" className = "border-2 border-black"></input>
         </form>
-
         <form className="px-6 mt-4 mb-4 w-full,text-align">
-        <div>パスワード</div>
-         <input className = "border-2 border-black"></input>
+         <input type="password" placeholder="パスワード" className = "border-2 border-black"></input>
         </form>
-
-        <ul>
-         <li>
-           
-          <button className={"text-white border-2 rounded-full py-2 px-3 text-2xl bg-red-400"}>
-           <Link href="/record">
-            <a>ログイン</a>
-           </Link>
-          </button>
-        </li>
-       </ul>
+          <div className={"w-32 text-align text-white border-2 border-black rounded-full py-2 px-3 text-2xl bg-red-400"}>
+          <button onClick={clickButton}>ログイン</button></div>
         </div>
         </div>
       </main>
@@ -53,5 +48,3 @@ const Home: NextPage = () => {
     </div>
   );
 };
-
-export default Home;
