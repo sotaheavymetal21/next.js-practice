@@ -12,6 +12,8 @@ export default function Index(){
     if (!input) {
       return;
     }
+
+    localStorage.setItem('asdf', input);
     router.push({
         pathname:"/record",   //URL
         query: {input :input} //検索クエリ
