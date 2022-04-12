@@ -6,7 +6,6 @@ import Router from "next/router"
 
 export default function index(){
  
-
   const clickEvent1 = () => {
     Router.push({
     pathname: '/show',
@@ -42,10 +41,10 @@ const clickEvent5 = () => {
       <div className={styles.container}>
         <div className="bg-gray-100">
        
-        
+        c
         <header className="text-right border-2 border-black">
         <>
-        <div>{ 'こんちわ' + 'YourName'}</div>
+        <div>{ 'こんちわ' + localStorage.getItem('asdf') }</div>
         </>
           </header>
            <main className={styles.table}>
@@ -124,7 +123,6 @@ const clickEvent5 = () => {
                        <td>user5@gmail.com</td>
                        <td>ユーザー</td>
                    </tr>
-                  
                  </tbody>
                 </div>
                </table>
